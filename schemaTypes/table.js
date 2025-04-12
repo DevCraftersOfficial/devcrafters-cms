@@ -9,11 +9,11 @@ export default defineType({
       name: 'caption',
       title: 'Table Caption',
       type: 'string',
-      description: 'A short description shown above or below the table',
+      description: 'Optional short description of the table',
     }),
     defineField({
       name: 'hasHeader',
-      title: 'First Row as Header',
+      title: 'First Row is Header',
       type: 'boolean',
       initialValue: true,
     }),
@@ -23,8 +23,9 @@ export default defineType({
       type: 'array',
       of: [
         defineType({
-          type: 'object',
           name: 'tableRow',
+          title: 'Row',
+          type: 'object',
           fields: [
             defineField({
               name: 'cells',
@@ -32,12 +33,24 @@ export default defineType({
               type: 'array',
               of: [
                 defineType({
-                  name: 'cellContent',
-                  title: 'Cell Content',
-                  type: 'array',
-                  of: [
-                    {type: 'block'},
+                  name: 'tableCell',
+                  title: 'Cell',
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'content',
+                      title: 'Content',
+                      type: 'array',
+                      of: [{type: 'block'}],
+                    }),
                   ],
+                  preview: {
+                    prepare() {
+                      return {
+                        title: 'Cell',
+                      }
+                    },
+                  },
                 }),
               ],
             }),
