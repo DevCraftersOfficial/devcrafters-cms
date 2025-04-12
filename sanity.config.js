@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'devcrafters-blog',
+  title: 'DevCrafters CMS',
 
   projectId: 'nr8mmlv4',
   dataset: 'production',
